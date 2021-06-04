@@ -30,5 +30,9 @@ jobs:
       with:
         name: Package
         path: staging
+    - name: Login via Az module
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
     - name: Deploy to Azure Web App
       run: mvn azure-webapp:deploy -Dazure.subscription=${{ secrets.AZURE_SUBSCRIPTION_ID}} -Dazure.resourcegroup=${{ secrets.AZURE_RESOURCE_GROUP }} -Dazure.webapp=${{ secrets.AZURE_WEB_APP }} -Dazure.region=${{ secrets.AZURE_REGION }}
