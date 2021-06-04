@@ -8,6 +8,7 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -22,8 +23,9 @@ jobs:
         java-version: '8'
         distribution: 'adopt'
     - name: Build with Maven
-    - run: mvn -B package --file pom.xml
-    - run: mkdir staging && cp target/*.war staging
+      run: mvn -B package --file pom.xml
+    - name: Copy WAR file to artifacts
+      run: mkdir staging && cp target/*.war staging
     - uses: actions/upload-artifact@v2
       with:
         name: Package
