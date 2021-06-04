@@ -31,4 +31,4 @@ jobs:
         name: Package
         path: staging
     - name: Deploy to Azure Web App
-      run: mvn azure-webapp:deploy -Dazure.subscription=${{ secrets.AZURE_SUBSCRIPTION_ID}} -Dazure.resourcegroup=${{ secrets.AZURE_RESOURCEGROUP }} -Dazure.webapp=${{ secrets.AZURE_WEB_APP }} -Dazure.region=${{ secrets.AZURE_REGION }}
+      run: mvn azure-webapp:deploy -Dazure.subscription=${{ secrets.AZURE_SUBSCRIPTION_ID}} -Dazure.resourcegroup=${{ secrets.AZURE_RESOURCE_GROUP }} -Dazure.webapp=${{ secrets.AZURE_WEB_APP }} -Dazure.region=${{ secrets.AZURE_REGION }}
