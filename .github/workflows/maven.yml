@@ -22,7 +22,7 @@ jobs:
       with:
         java-version: '8'
         distribution: 'adopt'
-    - name: Build with Maven
+    - name: Build solution with Maven
       run: mvn -B package --file pom.xml
     - name: Copy WAR file to artifacts
       run: mkdir staging && cp target/*.war staging
@@ -30,3 +30,5 @@ jobs:
       with:
         name: Package
         path: staging
+    - name: Deploy to Azure Web App
+      run: mvn deploy -Dazure.subscription=${{ secrets.AZURE_SUBSCRIPTION_ID}} -Dazure.resourcegroup=${{ secrets.AZURE_RESOURCEGROUP }} -Dazure.webapp=${{ secrets.AZURE_WEB_APP }} -Dazure.region=${{ secrets.AZURE_REGION }}
